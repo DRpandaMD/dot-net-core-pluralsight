@@ -25,6 +25,11 @@ namespace DictationProcessorExample
                     // - get aboslute file path
                     var audioFilepath = Path.Combine(subfolder, metadata.File.FileName);
                     // - verify file checksum
+                    var md5Checksum = GetCheckSum(audioFilepath);
+                    if (md5Checksum.Replace("-","").ToLower() != metadata.File.Md5Checksum)
+                    {
+                        throw new Exception("checksum not validated! File corrupted");
+                    }
                     // - generate a unique identifier
                     // - compress it
                     // - create a standalone metadata file
@@ -40,6 +45,7 @@ namespace DictationProcessorExample
             var fileStream = File.Open(filePath, FileMode.Open);
             var md5 = System.Security.Cryptography.MD5.Create();
             var md5Bytes = md5.ComputeHash(fileStream);
+            fileStream.Close();
             return BitConverter.ToString(md5Bytes);
         }
 

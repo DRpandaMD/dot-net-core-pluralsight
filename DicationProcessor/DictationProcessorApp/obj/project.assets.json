@@ -687,11 +687,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/michaelzarate/workspace_dot_net/pluralsight_dot_net_core_on_mac_and_linux/DictationProcessorExample/DictationProcessorExample.csproj",
-      "projectName": "DictationProcessorExample",
-      "projectPath": "/Users/michaelzarate/workspace_dot_net/pluralsight_dot_net_core_on_mac_and_linux/DictationProcessorExample/DictationProcessorExample.csproj",
+      "projectUniqueName": "/Users/michaelzarate/workspace_dot_net/pluralsight_dot_net_core_on_mac_and_linux/DicationProcessor/DictationProcessorApp/DictationProcessorApp.csproj",
+      "projectName": "DictationProcessorApp",
+      "projectPath": "/Users/michaelzarate/workspace_dot_net/pluralsight_dot_net_core_on_mac_and_linux/DicationProcessor/DictationProcessorApp/DictationProcessorApp.csproj",
       "packagesPath": "/Users/michaelzarate/.nuget/packages/",
-      "outputPath": "/Users/michaelzarate/workspace_dot_net/pluralsight_dot_net_core_on_mac_and_linux/DictationProcessorExample/obj/",
+      "outputPath": "/Users/michaelzarate/workspace_dot_net/pluralsight_dot_net_core_on_mac_and_linux/DicationProcessor/DictationProcessorApp/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

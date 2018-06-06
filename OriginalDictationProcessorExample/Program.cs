@@ -40,10 +40,7 @@ namespace DictationProcessorExample
                     // - create a standalone metadata file
                     SaveSingleMetadata(metadata, newpath + ".json");
                 }
-                
             }
-
-            
         }
 
         static void CreateCompressedFile(string inputFilePath, string outputFilePath)

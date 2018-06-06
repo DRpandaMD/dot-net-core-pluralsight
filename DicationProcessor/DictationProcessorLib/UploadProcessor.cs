@@ -9,38 +9,39 @@ namespace DictationProcessorLib
 {
     public class UploadProcessor
     {
+        string subfolder;
+        public UploadProcessor(string subfolder)
+        {
+            this.subfolder = subfolder;
+        }
+
        public void Process()
         {
-            // iterate through subfolder of '/mnt/uploads
-            foreach( var subfolder in Directory.GetDirectories("../Data/uploads"))
+            // get metadata file
+            var metadataFilePath = Path.Combine(subfolder, "metadata.json");
+            Console.WriteLine($"Reading {metadataFilePath}");
+            var metadataCollection = GetMetadata(metadataFilePath);
+            // for each audio file listed in metadata::
+            foreach (var metadata in metadataCollection)
             {
-                // get metadata file
-                var metadataFilePath = Path.Combine(subfolder, "metadata.json");
-                Console.WriteLine($"Reading {metadataFilePath}");
-                
-                var metadataCollection = GetMetadata(metadataFilePath);
-
-                // for each audio file listed in metadata::
-                foreach (var metadata in metadataCollection)
+                // - get aboslute file path
+                var audioFilepath = Path.Combine(subfolder, metadata.File.FileName);
+                // - verify file checksum
+                var md5Checksum = GetCheckSum(audioFilepath);
+                if (md5Checksum.Replace("-", "").ToLower() != metadata.File.Md5Checksum)
                 {
-                    // - get aboslute file path
-                    var audioFilepath = Path.Combine(subfolder, metadata.File.FileName);
-                    // - verify file checksum
-                    var md5Checksum = GetCheckSum(audioFilepath);
-                    if (md5Checksum.Replace("-", "").ToLower() != metadata.File.Md5Checksum)
-                    {
-                        throw new Exception("checksum not validated! File corrupted");
-                    }
-                    // - generate a unique identifier
-                    var uniqueID = Guid.NewGuid();
-                    metadata.File.FileName = uniqueID + ".WAV";
-                    var newpath = Path.Combine("../Data/ready_for_transcription", uniqueID + ".WAV");
-                    // - compress it
-                    CreateCompressedFile(audioFilepath, newpath);
-                    // - create a standalone metadata file
-                    SaveSingleMetadata(metadata, newpath + ".json");
+                    throw new Exception("checksum not validated! File corrupted");
                 }
+                // - generate a unique identifier
+                var uniqueID = Guid.NewGuid();
+                metadata.File.FileName = uniqueID + ".WAV";
+                var newpath = Path.Combine("../Data/ready_for_transcription", uniqueID + ".WAV");
+                // - compress it
+                CreateCompressedFile(audioFilepath, newpath);
+                // - create a standalone metadata file
+                SaveSingleMetadata(metadata, newpath + ".json");
             }
+        
         }
 
         static void CreateCompressedFile(string inputFilePath, string outputFilePath)

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using DictationProcessorLib;
 
 namespace DictationProcessorApp
 {
@@ -6,7 +8,12 @@ namespace DictationProcessorApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            foreach( var subfolder in Directory.GetDirectories("../Data/uploads"))
+            {
+                var uploadProcessor = new UploadProcessor(subfolder);
+                uploadProcessor.Process();
+            }
+                
         }
     }
 }

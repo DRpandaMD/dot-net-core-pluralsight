@@ -207,6 +207,16 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "DictationProcessorLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/DictationProcessorLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DictationProcessorLib.dll": {}
+        }
       }
     }
   },
@@ -673,10 +683,16 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "DictationProcessorLib/1.0.0": {
+      "type": "project",
+      "path": "../DictationProcessorLib/DictationProcessorLib.csproj",
+      "msbuildProject": "../DictationProcessorLib/DictationProcessorLib.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "DictationProcessorLib >= 1.0.0",
       "Microsoft.NETCore.App >= 2.1.0"
     ]
   },
@@ -707,7 +723,11 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/michaelzarate/workspace_dot_net/pluralsight_dot_net_core_on_mac_and_linux/DicationProcessor/DictationProcessorLib/DictationProcessorLib.csproj": {
+              "projectPath": "/Users/michaelzarate/workspace_dot_net/pluralsight_dot_net_core_on_mac_and_linux/DicationProcessor/DictationProcessorLib/DictationProcessorLib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

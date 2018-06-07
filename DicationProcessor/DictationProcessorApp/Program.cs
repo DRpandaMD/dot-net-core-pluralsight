@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using DictationProcessorLib;
 
 namespace DictationProcessorApp
@@ -18,7 +19,11 @@ namespace DictationProcessorApp
             }
 
             var message = $"{i} uploads were processed";
-            AppKitHelper.DisplayAlert(message);
+            
+            if(RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                AppKitHelper.DisplayAlert(message);
+            }
                 
         }
     }
